@@ -15,7 +15,7 @@ public class StudentsMethods implements Serializable {
     }
 
     public void studentsMethods() {
-        GreetingMessages.stars();
+        Logging.stars(36);
 
         System.out.println("*        !for exit press 0!        *");
         System.out.println("*          Students area           *");
@@ -37,8 +37,8 @@ public class StudentsMethods implements Serializable {
         if (enterredKey.equals("0"))
             System.exit(0);
         if (enterredKey.equals("1")) {
-            GreetingMessages greetingMessages = new GreetingMessages();
-            String id = greetingMessages.greetingMessageForStudents(scanner);
+            Logging logging = new Logging();
+            String id = logging.greetingMessageForStudents(scanner);
             String currentGroup = findGroup(id);
 //            System.out.println("Enter your ID:");
 //            String id = scanner.next();

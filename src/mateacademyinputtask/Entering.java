@@ -7,7 +7,7 @@ public class Entering {
     boolean isEntering=true;//check if is entering window
 
     public void entering() {
-        GreetingMessages.stars();
+        Logging.stars(20);
 
         System.out.println("*!for exit press 0!*");
         System.out.println("*                  *");

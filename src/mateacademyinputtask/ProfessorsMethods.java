@@ -4,7 +4,6 @@ import mateacademyinputtask.arraysofvalues.PersonaDataOfStudents;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +13,7 @@ public class ProfessorsMethods {
     private String status;
 
     public void professorsMethods() {
-        GreetingMessages.stars();
+        Logging.stars(36);
         System.out.println("*        !for exit press 0!        *");
         System.out.println("*          Professors area         *");
         System.out.println("*   for previous page - press b    *");
@@ -32,8 +31,8 @@ public class ProfessorsMethods {
 
         //for rollcall
         if (enterredKey.equals("1")) {
-            GreetingMessages greetingMessages = new GreetingMessages();
-            String id = greetingMessages.greetingMessageForProfessors(scanner);
+            Logging logging = new Logging();
+            String id = logging.greetingMessageForProfessors(scanner);
 
             Professor professor = new Professor(id);
 
