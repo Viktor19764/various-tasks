@@ -1,9 +1,11 @@
 package mateacademyinputtask;
 
 import mateacademyinputtask.arraysofvalues.PersonaDataOfStudents;
+import mateacademyinputtask.arraysofvalues.ProfessorsData;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,13 +58,13 @@ public class ProfessorsMethods {
             System.out.println();
             System.out.println("Results of rollcall:");
             for (String[] listOfStudentsOfDisciplineElement : listOfStudentsOfDiscipline) {
-                //System.out.println(listOfStudentsOfDisciplineElement[0] + ".\t" + listOfStudentsOfDisciplineElement[1] + "\t " + listOfStudentsOfDisciplineElement[2]);
-                System.out.printf(listOfStudentsOfDisciplineElement[0] + ".");
+                System.out.printf("%2s", listOfStudentsOfDisciplineElement[0]);
+                System.out.printf(".");
                 System.out.printf("%-23s", " " + listOfStudentsOfDisciplineElement[1]);
                 System.out.println(listOfStudentsOfDisciplineElement[2]);
             }
             try {
-                System.out.println("Rollcall is ready");
+                System.out.println("Rollcall is ready\nPress any button");
                 System.in.read();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -72,16 +74,17 @@ public class ProfessorsMethods {
 
     private List<String[]> listOfStudentsOfDiscipline(Professor professor) {
         PersonaDataOfStudents personaDataOfStudents = new PersonaDataOfStudents();
+        ProfessorsData professorsData = new ProfessorsData();
         List<String[]> listOfStudentsOfDiscipline = new ArrayList<>();
-        for (String[] person : personaDataOfStudents.getPersonalDataArray()) {
-            if (professor.getDiscipline().equals(person[4])) {
-                listOfStudentsOfDiscipline.add(person);
+        //String[] person;
+        for (String[] disciplines : professorsData.getProfessorsData()) {
+            for (String[] group : personaDataOfStudents.getDisciplinesOfGroupsArray()) {
+                for (String[] person : personaDataOfStudents.getPersonalDataArray()) {
+                    if (professor.getId().equals(disciplines[0]) && Arrays.asList(group).contains(disciplines[2]) && person[4].equals(group[0]))
+                        listOfStudentsOfDiscipline.add(person);
+                }
             }
         }
         return listOfStudentsOfDiscipline;
-    }
-
-    public boolean isProfessorssMethods() {
-        return isProfessorssMethods;
     }
 }

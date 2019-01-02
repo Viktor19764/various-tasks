@@ -4,19 +4,19 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Entering entering = new Entering();
+        StudentsMethods studentsMethods = new StudentsMethods();
+        ProfessorsMethods professorsMethods = new ProfessorsMethods();
+
         while (true) {
-            Entering entering = new Entering();
-            while (entering.isEntering()) {
-                entering.entering();
-                //clear console
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
+            entering.entering();
+            //clear console
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+
             switch (Entering.identifier) {
                 case 1:
-                    StudentsMethods studentsMethods = new StudentsMethods();
-                    while (studentsMethods.isStudentsMethods()) {
-
+                    while (StudentsMethods.isStudentsMethods) {
                         studentsMethods.studentsMethods();
                         //clear console
                         System.out.print("\033[H\033[2J");
@@ -24,8 +24,7 @@ public class Main {
                     }
                     break;
                 case 3:
-                    ProfessorsMethods professorsMethods = new ProfessorsMethods();
-                    while (professorsMethods.isProfessorssMethods()) {
+                    while (ProfessorsMethods.isProfessorssMethods) {
                         professorsMethods.professorsMethods();
                         //clear console
                         System.out.print("\033[H\033[2J");

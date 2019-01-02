@@ -29,4 +29,8 @@ public class Professor implements Person {
     public String getDiscipline() {
         return discipline;
     }
+
+    public String getId() {
+        return id;
+    }
 }

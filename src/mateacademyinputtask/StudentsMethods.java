@@ -133,8 +133,6 @@ public class StudentsMethods implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         return 1;
     }
 
