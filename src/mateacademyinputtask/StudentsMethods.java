@@ -7,7 +7,7 @@ import java.util.*;
 
 public class StudentsMethods implements Serializable {
     private boolean isAllVoted = false;
-    boolean isStudentsMethods = true;
+    public static boolean isStudentsMethods = true;
     private Map<String, Integer> highScore;//
     private List<String> votedIds;
 
@@ -16,36 +16,16 @@ public class StudentsMethods implements Serializable {
 
     public void studentsMethods() {
         Logging.stars(36);
-
         System.out.println("*        !for exit press 0!        *");
         System.out.println("*          Students area           *");
         System.out.println("*   for previous page - press b    *");
         System.out.println("*                                  *");
         System.out.println("* For election of headman press 1  *");
         Scanner scanner = new Scanner(System.in);
-        String enterredKey = scanner.next();
-
-
-//        KeyEvent mainMenu = null;
-//        if (mainMenu.getKeyCode() == KeyEvent.VK_SPACE) {
-//            isStudentsMethods = false;
-//        }
-
-        if (enterredKey.equals("b"))
-            isStudentsMethods = false;
-        //exit when "0" pressed
-        if (enterredKey.equals("0"))
-            System.exit(0);
-        if (enterredKey.equals("1")) {
+        if (Logging.backExitCheckButtons(scanner, isStudentsMethods).equals("1")) {//check pressed button
             Logging logging = new Logging();
             String id = logging.greetingMessageForStudents(scanner);
             String currentGroup = findGroup(id);
-//            System.out.println("Enter your ID:");
-//            String id = scanner.next();
-//            scanner.nextLine();
-//            System.out.println(id);
-//            System.out.println("Your name is " + new Students(id).getName() + "\nYour group is " + new Students(id).getGroup());
-
             ////////////
             if (readHighScore() != null)
                 highScore = new HashMap<>(readHighScore());
@@ -58,65 +38,31 @@ public class StudentsMethods implements Serializable {
             if (votedIds != null && votedIds.contains(id)) {
 
                 System.out.println("You are voted");
-                //checkIfAllVoted(currentGroup);
-//                System.out.println("Press any key");
-//                try {
-//                    System.in.read();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
 
             }
-            //if (false) {//check if already was election
-//            if (readHighScore() != null && votedIds != null) {
-//                highScore = new HashMap<>(readHighScore());
-//                votedIds = new ArrayList<>(readvotedIds());
-//            } else {
-//                highScore = new HashMap<>();
-//                votedIds = new ArrayList<>();
-//            }
-
-
             Students maxRatingStudent = null;
             if (maxRatePersonIdAndRating(currentGroup) != null)
                 maxRatingStudent = new Students(maxRatePersonIdAndRating(currentGroup).getKey());
-            //if (!checkIfAllVoted(currentGroup) && votedIds.contains(id) && maxRatingStudent.getRating() > 0) {//check if already was election
             if (!checkIfAllVoted(currentGroup) && votedIds.contains(id) && maxRatingStudent.getRating() > 0) {//check if already was election
                 System.out.println("Candidate for headman is: \n" + "ID: " + maxRatingStudent.getId() + " " +
                         maxRatingStudent.getName() + " , rating is: " + maxRatingStudent.getRating());
-                //votedIds.add(id);
-                //electionOfHeadman(id, scanner, currentGroup);//id for electing only in its group
             } else if (!votedIds.contains(id)) {
                 votedIds.add(id);
                 electionOfHeadman(id, scanner, currentGroup);//id for electing only in its group
-            } else if(checkIfAllVoted(currentGroup)){//if all students voted
-
-//                    currentGroup= Groups.CHEMISTRY.toString();
-                    //System.out.println("Group: " + currentGroup);
-//                    String idd = maxRatePersonIdAndRating(currentGroup).getKey();
-//                    maxRatingStudent = new Students(idd);
-
-                    //maxRatingStudent = new Students(maxRatePersonIdAndRating(currentGroup).getKey());
-                    System.out.println("Your headman is:\n" + maxRatingStudent.getName());
-               }
+            } else if (checkIfAllVoted(currentGroup)) {//if all students voted
+                System.out.println("Your headman is:\n" + maxRatingStudent.getName());
+            }
             System.out.println("Press any key");
             try {
                 System.in.read();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
-
-
     }
 
     private int electionOfHeadman(String id, Scanner scanner, String currentGroup) {
         PersonaDataOfStudents personaDataOfStudents = new PersonaDataOfStudents();
-        //searching group of current student
-        //String currentGroup = null;
-        String currentName = null;
-        //currentGroup = findGroup(id);
         if (currentGroup == null) {
             System.out.println("Incorrect ID\nPress any key");
             scanner.next();
@@ -163,7 +109,6 @@ public class StudentsMethods implements Serializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
 
             //serialize rating values
@@ -199,13 +144,10 @@ public class StudentsMethods implements Serializable {
 
     private int inputDialog(Scanner scanner, String person[], Students students) {
         System.out.println("Student: " + person[1] + ", grade (from 1 to 10):");
-        //int enterredKey = Integer.parseInt(scanner.next());
         int enterredKey = 0;
         while (true) {   //check correct input for numbers 1-10
             try {
                 enterredKey = scanner.nextInt();
-
-
                 if (enterredKey == 1 || enterredKey == 2 || enterredKey == 3 || enterredKey == 4 || enterredKey == 5 || enterredKey == 6 || enterredKey == 7 || enterredKey == 8 || enterredKey == 9 || enterredKey == 10)
                     break;
                 else
@@ -215,7 +157,6 @@ public class StudentsMethods implements Serializable {
                 System.out.println("Reenter correct grade (1-10)");
             }
         }
-        //students.setRating(enterredKey);
         return enterredKey;
     }
 
@@ -229,7 +170,6 @@ public class StudentsMethods implements Serializable {
                     if (maxRating == null || entry.getValue().compareTo(maxRating.getValue()) > 0)
                         maxRating = entry;
                 }
-
             }
         }
         return maxRating;
@@ -241,7 +181,6 @@ public class StudentsMethods implements Serializable {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             return (ArrayList<String>) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            //String path = new File("").getAbsolutePath();
             File file = new File("votedIdsAll.out");
             try {
                 file.createNewFile();
@@ -258,7 +197,6 @@ public class StudentsMethods implements Serializable {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             return (Map<String, Integer>) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            //String path = new File("").getAbsolutePath();
             File file = new File("highScoreAll.out");
             try {
                 file.createNewFile();
@@ -275,7 +213,6 @@ public class StudentsMethods implements Serializable {
         for (String[] person : personaDataOfStudents.getPersonalDataArray()) {
             if (id.equals(person[0])) {
                 currentGroup = person[4];
-                //System.out.println("Your name is: " + person[1] + "\nYour group: " + currentGroup);
             }
         }
         return currentGroup;
@@ -288,7 +225,6 @@ public class StudentsMethods implements Serializable {
             if (currentGroup.equals(person[4])) {
                 membersOfGroup.add(person[0]);
             }
-
         }
         for (String membersOfGroupElement : membersOfGroup) {
             isAllVoted = true;
@@ -297,8 +233,6 @@ public class StudentsMethods implements Serializable {
                 break;
             }
         }
-
         return isAllVoted;
     }
-
 }

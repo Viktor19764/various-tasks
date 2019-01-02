@@ -1,8 +1,8 @@
 package mateacademyinputtask.arraysofvalues;
 
-public final class ProfessorsNames {
+public final class ProfessorsData {
 
-    String[][] professorsNames = {
+    String[][] professorsData = {
             {"1","Abu Ali Sina", Groups.MEDICINE.toString()},
             {"2","Imhotep", Groups.ARCHITECTURE.toString()},
             {"3","Isaac Newton", Groups.PHYSICS.toString()},
@@ -13,7 +13,7 @@ public final class ProfessorsNames {
 
     };
 
-    public String[][] getProfessorsNames() {
-        return professorsNames;
+    public String[][] getProfessorsData() {
+        return professorsData;
     }
 }

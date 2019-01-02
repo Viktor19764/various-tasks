@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Entering {
     static int identifier;
-    boolean isEntering=true;//check if is entering window
+    boolean isEntering = true;//check if is entering window
 
     public void entering() {
         Logging.stars(20);
@@ -19,24 +19,19 @@ public class Entering {
         //exit when "0" pressed
         if (enterredKey.equals("0"))
             System.exit(0);
-        if (enterredKey.equals("1") ) {
+        if (enterredKey.equals("1")) {
             StudentsMethods studentsMethods = new StudentsMethods();
-            isEntering=false;
-            identifier=1;
-
+            isEntering = false;
+            identifier = 1;
         }
-        if (enterredKey.equals("3") ) {
+        if (enterredKey.equals("3")) {
             StudentsMethods studentsMethods = new StudentsMethods();
-            isEntering=false;
-            identifier=3;
-
+            isEntering = false;
+            identifier = 3;
         }
-
-
     }
 
     public boolean isEntering() {
         return isEntering;
     }
-
 }

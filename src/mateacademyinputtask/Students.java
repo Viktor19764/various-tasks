@@ -114,7 +114,6 @@ public class Students implements Person {
 
     public int getRating() {
         StudentsMethods studentsMethods = new StudentsMethods();
-        //StudentsMethods studentsMethods1 = new StudentsMethods();
         int rating = this.rating;
         Map<String, Integer> highScore = new HashMap(studentsMethods.readHighScore());
         if (highScore.size() == 0)

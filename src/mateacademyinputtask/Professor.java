@@ -1,6 +1,6 @@
 package mateacademyinputtask;
 
-import mateacademyinputtask.arraysofvalues.ProfessorsNames;
+import mateacademyinputtask.arraysofvalues.ProfessorsData;
 
 public class Professor implements Person {
     //personal data
@@ -9,13 +9,13 @@ public class Professor implements Person {
     private String discipline;
 
     public Professor(String id) {
-        ProfessorsNames professorsNames = new ProfessorsNames();
+        ProfessorsData professorsData = new ProfessorsData();
         this.id = id;
-        for (String[] professorName : professorsNames.getProfessorsNames()) {
+        for (String[] professorName : professorsData.getProfessorsData()) {
             if (professorName[0].equals(id))
                 this.name = professorName[1];
         }
-        for (String[] professorName : professorsNames.getProfessorsNames()) {
+        for (String[] professorName : professorsData.getProfessorsData()) {
             if (professorName[0].equals(id))
                 this.discipline = professorName[2];
         }

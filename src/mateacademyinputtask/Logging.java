@@ -1,7 +1,7 @@
 package mateacademyinputtask;
 
 import mateacademyinputtask.arraysofvalues.PersonaDataOfStudents;
-import mateacademyinputtask.arraysofvalues.ProfessorsNames;
+import mateacademyinputtask.arraysofvalues.ProfessorsData;
 
 import java.util.Scanner;
 
@@ -11,34 +11,32 @@ public class Logging {
         scanner = new Scanner(System.in);
         System.out.println("Enter your ID:");
         String id = null;
-       while (true){
-           id = scanner.next();
-           scanner.nextLine();
-           if (checkStudentsId(id)) {
-               Students students = new Students(id);
-               System.out.println("Your name is: " + students.getName() + "\nYour group is " + students.getGroup());
-               return id;
-           }else{
-               System.out.println("Incorrect ID\nPlease reenter");
-
-           }
-       }
+        while (true) {
+            id = scanner.next();
+            scanner.nextLine();
+            if (checkStudentsId(id)) {
+                Students students = new Students(id);
+                System.out.println("Your name is: " + students.getName() + "\nYour group is " + students.getGroup());
+                return id;
+            } else {
+                System.out.println("Incorrect ID\nPlease reenter");
+            }
+        }
     }
 
     public String greetingMessageForProfessors(Scanner scanner) {
         scanner = new Scanner(System.in);
         System.out.println("Dear Professor, for logging enter your ID:");
         String id = null;
-        while (true){
+        while (true) {
             id = scanner.next();
             scanner.nextLine();
             if (checkProfessorsId(id)) {
                 Professor professor = new Professor(id);
-        System.out.println("You are logged as: " + professor.getName() + "\nlecturer of " + professor.getDiscipline());
+                System.out.println("You are logged as: " + professor.getName() + "\nlecturer of " + professor.getDiscipline());
                 return id;
-            }else{
+            } else {
                 System.out.println("Incorrect ID\nPlease reenter");
-
             }
         }
     }
@@ -53,12 +51,24 @@ public class Logging {
     }
 
     private boolean checkProfessorsId(String id) {
-        ProfessorsNames professorsNames = new ProfessorsNames();
-        for (String[] professorsNamesRow : professorsNames.getProfessorsNames()) {
+        ProfessorsData professorsData = new ProfessorsData();
+        for (String[] professorsNamesRow : professorsData.getProfessorsData()) {
             if (professorsNamesRow[0].equals(id))
                 return true;
         }
         return false;
+    }
+
+    public static String backExitCheckButtons(Scanner scanner, boolean isStudentsMethods) {
+        String enterredKey = scanner.next();
+        if (enterredKey.equals("b")) {
+            StudentsMethods.isStudentsMethods = false;
+            ProfessorsMethods.isProfessorssMethods = false;
+        }
+        //exit when "0" pressed
+        if (enterredKey.equals("0"))
+            System.exit(0);
+        return enterredKey;
     }
 
     public static void stars(int weight) {
@@ -81,6 +91,4 @@ public class Logging {
             System.out.print("\n\r");
         }/////////////////
     }
-
-
 }
