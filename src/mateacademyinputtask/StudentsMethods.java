@@ -58,13 +58,13 @@ public class StudentsMethods implements Serializable {
             if (votedIds != null && votedIds.contains(id)) {
 
                 System.out.println("You are voted");
-                checkIfAllVoted(currentGroup);
-                System.out.println("Press any key");
-                try {
-                    System.in.read();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                //checkIfAllVoted(currentGroup);
+//                System.out.println("Press any key");
+//                try {
+//                    System.in.read();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
             }
             //if (false) {//check if already was election
@@ -80,20 +80,31 @@ public class StudentsMethods implements Serializable {
             Students maxRatingStudent = null;
             if (maxRatePersonIdAndRating(currentGroup) != null)
                 maxRatingStudent = new Students(maxRatePersonIdAndRating(currentGroup).getKey());
-            if (maxRatePersonIdAndRating(currentGroup) != null && highScore.size() > 0 && maxRatingStudent.getRating() > 0) {//check if already was election
+            //if (!checkIfAllVoted(currentGroup) && votedIds.contains(id) && maxRatingStudent.getRating() > 0) {//check if already was election
+            if (!checkIfAllVoted(currentGroup) && votedIds.contains(id) && maxRatingStudent.getRating() > 0) {//check if already was election
                 System.out.println("Candidate for headman is: \n" + "ID: " + maxRatingStudent.getId() + " " +
                         maxRatingStudent.getName() + " , rating is: " + maxRatingStudent.getRating());
-                votedIds.add(id);
-                electionOfHeadman(id, scanner, currentGroup);//id for electing only in its group
+                //votedIds.add(id);
+                //electionOfHeadman(id, scanner, currentGroup);//id for electing only in its group
             } else if (!votedIds.contains(id)) {
                 votedIds.add(id);
                 electionOfHeadman(id, scanner, currentGroup);//id for electing only in its group
-            } else {//if all students voted
+            } else if(checkIfAllVoted(currentGroup)){//if all students voted
 
-                checkIfAllVoted(currentGroup);
+//                    currentGroup= Groups.CHEMISTRY.toString();
+                    //System.out.println("Group: " + currentGroup);
+//                    String idd = maxRatePersonIdAndRating(currentGroup).getKey();
+//                    maxRatingStudent = new Students(idd);
 
+                    //maxRatingStudent = new Students(maxRatePersonIdAndRating(currentGroup).getKey());
+                    System.out.println("Your headman is:\n" + maxRatingStudent.getName());
+               }
+            System.out.println("Press any key");
+            try {
+                System.in.read();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
 
         }
 
@@ -286,15 +297,7 @@ public class StudentsMethods implements Serializable {
                 break;
             }
         }
-        if (isAllVoted) {
-//                    currentGroup= Groups.CHEMISTRY.toString();
-            //System.out.println("Group: " + currentGroup);
-//                    String idd = maxRatePersonIdAndRating(currentGroup).getKey();
-//                    maxRatingStudent = new Students(idd);
 
-            Students maxRatingStudent = new Students(maxRatePersonIdAndRating(currentGroup).getKey());
-            System.out.println("Your headman is:\n" + maxRatingStudent.getName());
-        }
         return isAllVoted;
     }
 
