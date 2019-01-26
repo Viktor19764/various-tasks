@@ -1,0 +1,2 @@
+Classes allow you to convert the text into a list of words, then add a list translated manually, and then combine the two lists into a combined list that you can import into the program ANKI and teach the words, and then read the book.
+Good way!
