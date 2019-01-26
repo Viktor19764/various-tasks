@@ -1,6 +1,7 @@
 package workwithtext;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
@@ -49,28 +50,48 @@ public class FromTextToWords {
             if (Arrays.asList(punctuationMarks).contains(Character.toString(stringBuilder.charAt(i)))) {
                 stringBuilder.replace(i, i + 1, " ");
             }
-            if ((stringBuilder.charAt(i) == ' '||stringBuilder.charAt(i) == ' ') && i < stringBuilder.length() - 3) {
+            if ((stringBuilder.charAt(i) == ' ' || stringBuilder.charAt(i) == ' ') && i < stringBuilder.length() - 3) {
                 stringBuilder.replace(i + 1, i + 2, Character.toString(stringBuilder.charAt(i + 1)).toUpperCase());
                 //stringBuilder.replace(i, i + 1, "-");
                 //stringBuilder.replace(i+1, i+2, "---");
             }
         }
+        //stringBuilder.insert(0, "\"");//додавання кавичок на початок кавички для того щоб не розривалося слово апострофом
 
         String[] wholeStringArray = stringBuilder.toString().split(" ", 0);//нерозривний пробіл
         Set<String> words = new TreeSet();
-        for (String el : wholeStringArray) {
-            words.addAll(Arrays.asList(el.split(" ", 0)));//звичайний пробіл
-        }
-        //trim words
+        Set<String> wordsForTranscription = new TreeSet();
+        String[] stringArray2 = null;
         int i = 0;
+        for (String el : wholeStringArray) {
+            i = 0;
+            stringArray2 = el.split(" ", 0);//звичайний пробіл
+            words.addAll(Arrays.asList(stringArray2));//множини без кавичок
+            for (String el2 : stringArray2) {
+                stringArray2[i] = "\"" + stringArray2[i] + "\"";//додавання кавичок до кожного слова
+                i++;
+            }
+            wordsForTranscription.addAll(Arrays.asList(stringArray2));
+        }
+
+        words.remove("");  //delete empty strings
+        words.remove("\"");  //delete empty strings
+        wordsForTranscription.remove("\"");  //delete empty strings
+        wordsForTranscription.remove("\"\"");  //delete empty strings
+        wordsForTranscription.remove("\"\"\"");  //delete empty strings
+        //trim words
         for (String el : words) {
             el.trim();
-            i++;
         }
-        words.remove("");  //delete empty strings
-        System.out.println(((TreeSet<String>) words).first());
+        for (String el : wordsForTranscription) {
+            el.trim();
+        }
+
+        //System.out.println(((TreeSet<String>) wordsForTranscription).first());
+
         //words to file write
         new WriteReadFiles().writeFile(words, "words.txt");
+        new WriteReadFiles().writeFile(wordsForTranscription, "wordsfortranscription.txt");
         return true;
 
     }
