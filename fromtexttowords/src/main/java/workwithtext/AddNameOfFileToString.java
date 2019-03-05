@@ -28,7 +28,7 @@ public class AddNameOfFileToString {
             int indexOfTab = oneLine.indexOf("\t");
             String subStringBeforeTab = oneLine.substring(0, indexOfTab);
             String subStringAfterTab = oneLine.substring(indexOfTab);
-            linesChanged.add(subStringBeforeTab + nameOfMp3 + subStringAfterTab);
+            linesChanged.add(subStringBeforeTab + nameOfMp3 + subStringAfterTab+"\n");
 
         }
         for (String lineEl : linesChanged)
