@@ -7,8 +7,9 @@ Pre-installed programs required:
 5.anki
 
 USING
-1. Compile the source code and copy the file runscript.sh to build/classes/java/main/ folder, grant the file execution rights
-for this script. In this file you can adjust the translation direction.
+1. Compile the source code and copy the file runscript.sh to build/classes/java/main/ folder,
+grant the file execution rights for this script.
+In this file you can adjust the translation direction.
 2. Then copy needed english words or entire english text to the file input.txt
 3. Run script runscript.sh
 4. Your translated words for import to Anki will be in the file wordswithtranslation.txt
