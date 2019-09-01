@@ -1,0 +1,32 @@
+For Linux systems (tested on Ubuntu 18.04)
+Pre-installed programs required:
+1.espeak
+2.translate-shell (from https://www.soimort.org/translate-shell/trans)
+3.tor
+4.torsocks
+5.anki
+
+USING
+1. Compile the source code and copy the file runscript.sh to build/classes/java/main/ folder, grant the file execution rights
+for this script. In this file you can adjust the translation direction.
+2. Then copy needed english words or entire english text to the file input.txt
+3. Run script runscript.sh
+4. Your translated words for import to Anki will be in the file wordswithtranslation.txt
+5. Run Anki, choose file-import, then our file wordswithtranslation.txt, then choose separator \ ,
+tick the "html tags" and press OK.
+
+EXAMPLE OF FILE FORMAT for input.txt
+
+#  >face journey>емоційний вираз обличчя   you put here english and translated words, divided by ">" at the beginning
+of the line and between english word or english phrase and your translation.
+#  "get the runaround" translating the entire phrase from Google, the words framed in quotes
+#  не ставити апостроф у англійській частині, крапку
+
+>merge>з'єднати
+>dizzy>запаморочливий
+>apt>схильний
+"get the runaround"
+here can be text too
+>biting>кусаючий
+>disgraceful>ганебний
+>stiffly>жорстко
