@@ -28,7 +28,7 @@ public class WriteReadFiles {
             out = new BufferedWriter(new FileWriter(outputFileName));
             while (it.hasNext()) {
                 line = it.next().toString();
-                if (!Arrays.asList(line.toCharArray()).contains(' ') && !Arrays.asList(line.toCharArray()).contains(0x0A)) {  //pass empty strings
+                if (!Arrays.asList(line.toCharArray()).contains(' ') && !Arrays.asList(line.toCharArray()).contains(0x0A) && line.length() > 1 ) {  //pass empty strings
                     out.write(line);
                     out.newLine();
                 }
