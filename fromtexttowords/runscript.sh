@@ -16,8 +16,8 @@ while read in;
      do count=$(cat count.txt);  
     echo "$(cat wordsForGoogle.txt | sed -n $count'p')"  > y.txt; 
     if ! pgrep -x "tor" > /dev/null; then 
-          tor & torsocks trans en:uk file://y.txt > x.txt; 
-          else    torsocks trans en:uk file://y.txt > x.txt;
+          tor & torsocks trans en:uk file://y.txt > x.txt; #here you can adjust the translation direction: use trans -R for codes
+          else    torsocks trans en:uk file://y.txt > x.txt; #here you can adjust the translation direction: use trans -R for codes 
     fi; 
     if [ -n "$(cat x.txt | sed -n 1p)" ]; then   
         cat x.txt >> onlyTranslation.txt;     
