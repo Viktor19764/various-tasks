@@ -1,3 +1,6 @@
+This thing is for translation an entire text (from book for example), or phrase or a separate word or using ready translation
+and importing an result to anki - word learning application.
+
 For Linux systems (tested on Ubuntu 18.04)
 Pre-installed programs required:
 1.espeak
@@ -28,6 +31,7 @@ of the line and between english word or english phrase and your translation.
 >apt>схильний
 "get the runaround"
 here can be text too
+it will translate each separate word
 >biting>кусаючий
 >disgraceful>ганебний
 >stiffly>жорстко
